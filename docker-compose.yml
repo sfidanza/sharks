@@ -1,0 +1,40 @@
+version: '3'
+services:
+#  nginx:
+#    build: docker/nginx
+#    ports:
+#      - 8080:80
+#      - 8443:443
+
+  app:
+    build: server/
+    environment:
+      - MONGO_HOSTNAME=mongo
+      - MONGO_PORT=27017
+      - NODE_PORT=9090
+    volumes:
+      - ./server:/usr/src/app
+    ports:
+      - 9090:9090
+#    tty: true
+    links:
+      - mongo
+
+  mongo:
+    image: mongo:4.2.8
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+    ports:
+      - 27017:27017
+
+  admin:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    links:
+      - mongo
+  
+volumes:
+  mongodb:
+  mongodb_config:

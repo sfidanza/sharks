@@ -1,0 +1,84 @@
+html {
+	height: 100%;
+}
+body {
+	background-color:#272e36;
+	color: white;
+}
+a {
+	color: white;
+}
+h1 {
+	text-align:center;
+}
+h3 {
+	text-align: center;
+	
+}
+
+/***[Access]************/
+#keypad {
+	width: 366px;
+	text-align: center;
+	margin: auto;
+	font-family: sans-serif;
+}
+#keypad.hidden {
+	display: none;
+}
+#keypad div {
+	float: left;
+	width: 100px;
+	border: 1px solid rgb(97, 97, 97);
+	margin: 10px;
+	padding: 30px 0;
+	background-color: #9b818150;
+	cursor:pointer;
+	user-select: none;
+}
+#keypad div.action {
+	background-color:rgba(68, 65, 65, 0.973);
+}
+#keypad div:hover {
+	border-color: rgb(255, 255, 255);
+}
+
+#code {
+	margin: 40px auto;
+	border: 1px solid gray;
+	padding: 20px 30px;
+	width: 150px;
+	height: 26px;
+	font-family: sans-serif;
+	font-size: 150%;
+	letter-spacing: 2rem;
+	user-select: none;
+}
+#granted, #incorrect, #alert {
+	display: none;
+	clear: left;
+	font-family: sans-serif;
+	font-size: 150%;
+	font-weight: bold;
+	font-variant: small-caps;
+	padding: 20px 30px;
+	margin: 60px auto;
+	width: 300px;
+	background: black;
+	text-align: center;
+}
+#granted {
+	color: green;
+	border: 3px solid green;
+}
+#incorrect {
+	color: yellow;
+	border: 3px solid yellow;
+}
+#alert {
+	color: red;
+	border: 3px solid red;
+}
+#granted.active, #incorrect.active, #alert.active {
+	display: block;
+}

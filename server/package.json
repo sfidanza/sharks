@@ -1,0 +1,19 @@
+{
+  "name": "node-test",
+  "version": "0.1.0",
+  "author": "Stéphane Fidanza <stephane.fidanza@gmail.com>",
+  "description": "Testing node inside a docker container",
+  "dependencies": {
+    "mongodb": "^3.5.9"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "start": "nodemon --legacy-watch --experimental-json-modules index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT"
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>About Sharks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/sharks/sharks.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet" type="text/css">
+</head>
+<div class="jumbotron">
+    <h1>Shark Info</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <p>Your Sharks</p>
+            <ul>
+                <% sharks.forEach(function(shark) { %>
+                <li><%= shark.name %>, <%= shark.type %></li>
+                <% }); %>
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <p>Enter a new Shark</p>
+            <form action="/api/sharks/" method="post">
+                <input type="text" placeholder="Shark Name" name="name" />
+                <input type="text" placeholder="Shark Type" name="type" />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</html>

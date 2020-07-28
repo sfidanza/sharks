@@ -4,6 +4,7 @@
   "author": "Stéphane Fidanza <stephane.fidanza@gmail.com>",
   "description": "Testing node inside a docker container",
   "dependencies": {
+    "express": "^4.17.1",
     "mongodb": "^3.5.9"
   },
   "devDependencies": {

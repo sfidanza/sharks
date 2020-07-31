@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/sharks/sharks.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/sharks/sharks.js"></script>
 </head>
 <div class="jumbotron">
     <h1>Shark Info</h1>
@@ -17,7 +18,7 @@
             <p>Your Sharks</p>
             <ul>
                 <% sharks.forEach(function(shark) { %>
-                <li><%= shark.name %>, <%= shark.type %></li>
+                <li><%= shark.name %>, <%= shark.type %> - <a onclick="sharks.delete('<%= shark._id %>'); return false;">remove</a></li>
                 <% }); %>
             </ul>
         </div>

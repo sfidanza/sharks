@@ -20,11 +20,12 @@ app.engine('html', ejs.renderFile);
 app.set('view engine', 'html');
 app.set('views', 'src/views');
 app.use(express.urlencoded({ extended: true }));
+//app.use(express.json());
 
 MongoClient.connect(`mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}`, { useUnifiedTopology: true })
 	.then(client => {
 		console.log("Connected to mongodb!");
-		let db = client.db('test');
+		const db = client.db('test');
 
 		app.use('/api/code', code);
 		app.use('/api/teams', teams(db));

@@ -32,3 +32,8 @@ p {
 .col-lg-6 form {
     margin: 1em;
 }
+
+li a {
+    cursor: pointer;
+    font-size: 75%;
+}

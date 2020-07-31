@@ -13,14 +13,8 @@ const {
 
 const app = express();
 
-// Serve statics if nginx is not deployed
-app.use(express.static('./src/static'));
-
-app.engine('html', ejs.renderFile);
-app.set('view engine', 'html');
-app.set('views', 'src/views');
 app.use(express.urlencoded({ extended: true }));
-//app.use(express.json());
+app.use(express.json());
 
 MongoClient.connect(`mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}`, { useUnifiedTopology: true })
 	.then(client => {

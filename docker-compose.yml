@@ -1,11 +1,15 @@
 version: '3'
 services:
-#  nginx:
-#    build: docker/nginx
-#    ports:
-#      - 8080:80
-#      - 8443:443
-
+  nginx:
+    build: client/
+    volumes:
+      - ./client/src:/var/www/no-game
+    ports:
+      - 8080:80
+      # - 8443:443
+    links:
+      - app
+  
   app:
     build: server/
     environment:

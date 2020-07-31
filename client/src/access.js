@@ -57,7 +57,6 @@ access.validateCode = function() {
 };
 
 access.displayCode = function() {
-    console.log('Code: ', this.code);
     let showCode = '*'.repeat(this.code.length);
     document.querySelector("#code").innerHTML = showCode || '&nbsp;';
 };

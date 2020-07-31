@@ -33,7 +33,11 @@ p {
     margin: 1em;
 }
 
-li a {
+a.action {
     cursor: pointer;
     font-size: 75%;
+}
+
+ul#sharks-list li {
+    padding: 2px 0;
 }

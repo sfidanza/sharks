@@ -1,14 +1,34 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf8" />
-	<title>No Game</title>
-	<link type="image/png" rel="shortcut icon" href="images/icon_no_game_private.png"/>
-    <link type="text/css" rel="stylesheet" href="site.css"/>
-	<!--script type="text/javascript" src="script.js"></script-->
-</head>
-<body>
-    <a href="menu.html" class="monBoutton">&larr; Menu</a>
+<html lang="en">
 
-</body>
+<head>
+    <title>About Sharks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link type="image/png" rel="shortcut icon" href="sammy.png"/>
+    <link href="sharks.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="sharks.js"></script>
+</head>
+<div class="jumbotron">
+    <h1>Shark Info</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <p>Your Sharks - <a class="action" onclick="sharks.list(); return false;">refresh</a></p>
+            <ul id="sharks-list">
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <p>Enter a new Shark</p>
+            <form action="/api/sharks/" method="post" onsubmit="sharks.post(utils.getFormBody(this)); return false;">
+                <input type="text" placeholder="Shark Name" name="name" />
+                <input type="text" placeholder="Shark Type" name="type" />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 </html>

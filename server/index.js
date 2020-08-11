@@ -1,8 +1,5 @@
 import express from "express";
-import ejs from "ejs";
 import MongoClient from "mongodb";
-import code from "./src/code.js";
-import teams from "./src/teams.js";
 import sharks from "./src/sharks.js";
 
 const {
@@ -21,8 +18,6 @@ MongoClient.connect(`mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}`, { useUnifiedTop
 		console.log("Connected to mongodb!");
 		const db = client.db('test');
 
-		app.use('/api/code', code);
-		app.use('/api/teams', teams(db));
 		app.use('/api/sharks', sharks(db));
 
 		app.listen(NODE_PORT, function () {

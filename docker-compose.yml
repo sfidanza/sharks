@@ -3,11 +3,10 @@ services:
   nginx:
     build: client/
     volumes:
-      - ./client/src:/var/www/no-game
+      - ./client/src:/var/www/sharks
     ports:
       - 8080:80
-      # - 8443:443
-    links:
+    depends_on:
       - app
   
   app:
@@ -18,10 +17,10 @@ services:
       - NODE_PORT=9090
     volumes:
       - ./server:/usr/src/app
-    ports:
-      - 9090:9090
+    expose:
+      - 9090
 #    tty: true
-    links:
+    depends_on:
       - mongo
 
   mongo:
@@ -29,14 +28,14 @@ services:
     volumes:
       - mongodb:/data/db
       - mongodb_config:/data/configdb
-    ports:
-      - 27017:27017
+    expose:
+      - 27017
 
   admin:
     image: mongo-express
     ports:
       - 8081:8081
-    links:
+    depends_on:
       - mongo
   
 volumes:

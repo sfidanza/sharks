@@ -8,3 +8,6 @@ services:
     volumes:
       - ./server:/usr/src/app
       - /usr/src/app/node_modules
+    ports:
+      - "9229:9229"
+    command: npm debug

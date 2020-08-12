@@ -48,7 +48,7 @@ Additionally, you can see the logs of the containers or shell into them directly
 
 ## Debugging the node.js code
 
-To do.
+The node.js container also exposes port 9229 to an external debugger and the process in dev mode is started with debug activated (using the `package.json` debug script). Launching the Chrome DevTools external debugger (`chrome://inspect` in the Chrome address bar), you should see the server code in the Sources tab and you will be able to set breakpoints. If you don't, make sure you have `localhost:9229` listed in the Connection tab.
 
 ## Running on Openshift
 

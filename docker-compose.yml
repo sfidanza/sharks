@@ -1,14 +1,14 @@
 version: '3'
 services:
   nginx:
-    build: client/
+    image: sfidanza/sharks-frontend
     ports:
       - "8080:80"
     depends_on:
       - app
   
   app:
-    build: server/
+    image: sfidanza/sharks
     environment:
       - MONGO_HOSTNAME=mongo
       - MONGO_PORT=27017

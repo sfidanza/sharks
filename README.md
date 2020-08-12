@@ -28,7 +28,7 @@ Once you get everything setup, it is simple to start/stop the app from the repos
 
 Note: in VSCode, you can simply right-click on `docker-compose.yml` and choose `Compose Up` (or `Compose Restart` or `Compose Down`).
 
-Docker will build the containers and start them: you will see them appear in Docker Dashboard, VSCode Docker extension, or using `docker ps` in terminal. Two ports are exposed:
+Docker will download the images from the docker hub and start the containers: you will see them appear in Docker Dashboard, VSCode Docker extension, or using `docker ps` in terminal. Two ports are exposed:
 
 - <http://localhost:8080> to access the web site
 - <http://localhost:8081> to access the Mongo DB admin panel
@@ -37,18 +37,25 @@ You can add and remove sharks to the list, through the site or through the DB ad
 
 ## Running the code locally in dev mode
 
-To get instant refresh of code updates, we use bind mounts from the docker containers (server and client) to the host filesystem. This is done through the `docker-compose.override.yml` configuration which is automatically applied by docker when the target file is not specified (no `-f` option). Note that `node_modules` is still kept inside the container, so that it is properly initiated in dev mode as well.
+To use the local code from the repository and get instant refresh of code updates, we will build the server (app) and client (nginx) images locally and use bind mounts from the docker containers to the host filesystem. This is done through the `docker-compose.override.yml` configuration which is automatically applied by docker when the target file is not specified (no `-f` option). Note that `node_modules` is still kept inside the container, so that it is properly initiated in dev mode as well.
 
 This time, the command to start/stop the app is even simpler:
 
     docker-compose up -d --build
     docker-compose down
 
-Additionally, you can see the logs of the containers or shell into them directly from VSCode: right-click on the container from the docker extension tab and you will see the options.
+You still access the application the same way once the containers are up. Additionally, you can see the logs of the containers or shell into them directly from VSCode: right-click on the container from the docker extension tab and you will see the options.
 
 ## Debugging the node.js code
 
 The node.js container also exposes port 9229 to an external debugger and the process in dev mode is started with debug activated (using the `package.json` debug script). Launching the Chrome DevTools external debugger (`chrome://inspect` in the Chrome address bar), you should see the server code in the Sources tab and you will be able to set breakpoints. If you don't, make sure you have `localhost:9229` listed in the Connection tab.
+
+## Publish to dockerhub
+
+I have setup a dockerhub repository for each image to be built and configured them to pull from github at each new commit to the `publish` branch:
+
+- [sfidanza/sharks](https://hub.docker.com/repository/docker/sfidanza/sharks)
+- [sfidanza/sharks-frontend](https://hub.docker.com/repository/docker/sfidanza/sharks-frontend)
 
 ## Running on Openshift
 

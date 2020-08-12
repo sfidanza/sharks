@@ -2,8 +2,6 @@ version: '3'
 services:
   nginx:
     build: client/
-    volumes:
-      - ./client/src:/var/www/sharks
     ports:
       - 8080:80
     depends_on:
@@ -15,11 +13,8 @@ services:
       - MONGO_HOSTNAME=mongo
       - MONGO_PORT=27017
       - NODE_PORT=9090
-    volumes:
-      - ./server:/usr/src/app
     expose:
       - 9090
-#    tty: true
     depends_on:
       - mongo
 

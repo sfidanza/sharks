@@ -6,7 +6,9 @@ services:
       - "8080:8080"
     depends_on:
       - app
-  
+    labels:
+      kompose.service.expose: true
+    
   app:
     image: sfidanza/sharks
     environment:
@@ -32,7 +34,9 @@ services:
       - 8081:8081
     depends_on:
       - mongo
-  
+    labels:
+      kompose.service.expose: true
+    
 volumes:
   mongodb:
   mongodb_config:

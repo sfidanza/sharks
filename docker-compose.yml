@@ -7,7 +7,7 @@ services:
     depends_on:
       - app
     labels:
-      kompose.service.expose: true
+      kompose.service.expose: "true"
     
   app:
     image: sfidanza/sharks
@@ -35,7 +35,7 @@ services:
     depends_on:
       - mongo
     labels:
-      kompose.service.expose: true
+      kompose.service.expose: "true"
     
 volumes:
   mongodb:

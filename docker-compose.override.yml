@@ -1,12 +1,12 @@
-version: '3'
+version: '3.8'
 services:
   nginx:
-    build: client/
+    build: ./client
     volumes:
       - ./client/src:/var/www/sharks
   
   app:
-    build: server/
+    build: ./server
     volumes:
       - ./server:/usr/src/app
       - node_modules:/usr/src/app/node_modules

@@ -23,7 +23,7 @@ sharks.list = function() {
 };
 
 sharks.post = function(body) {
-    let { name, type } = body || {};
+    const { name, type } = body || {};
     fetch('/api/sharks/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -32,7 +32,7 @@ sharks.post = function(body) {
 };
 
 sharks.put = function(id, body) {
-    let { name, type } = body || {};
+    const { name, type } = body || {};
     fetch('/api/sharks/' + id, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -47,10 +47,10 @@ sharks.delete = function(id) {
 };
 
 sharks.handleResponse = async function(response) {
-    const msg = await response.json();
     if (response.ok) {
         sharks.list();
     } else {
+        const msg = await response.json();
         console.error(msg);
     }
 };
@@ -60,8 +60,8 @@ sharks.handleResponse = async function(response) {
 const utils = {};
 
 utils.getFormBody = function(form) {
-    let obj = {};
-    Array.prototype.forEach.call(form.elements, input => { if (input.name) obj[input.name] = input.value });
+    const obj = {};
+    Array.from(form.elements).forEach(input => { if (input.name) obj[input.name] = input.value });
     return obj;
 };
 

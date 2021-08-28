@@ -7,39 +7,35 @@ export default function getRouter(db) {
 		db.collection('sharks').find({})
 			.toArray()
 			.then(data => {
-				response.json({
-					"sharks": data
-				});
+				response.json({ "sharks": data });
 			}).catch(err => {
 				console.error(err);
-				response.status(500).json({ error: 'Unable to get sharks from database: ' + err.errmsg });
+				response.status(500).json({ error: 'Unable to get sharks from database: ' + err.message });
 			});
 	});
 
 	router.post('/', function (request, response) {
-		let { name, type } = request.body;
-		let shark = { _id: name, name, type };
-		db.collection('sharks').insertOne(shark)
+		const { name, type } = request.body;
+		db.collection('sharks').insertOne({ _id: name, name, type })
 			.then(result => {
-				let { insertedCount, insertedId } = result;
+				const { insertedCount, insertedId } = result;
 				response.json({ insertedCount, insertedId });
 			}).catch(err => {
 				console.error(err);
-				response.status(500).json({ error: 'Unable to save shark to database: ' + err.errmsg });
+				response.status(500).json({ error: 'Unable to save shark to database: ' + err.message });
 			});
 	});
 
 	router.put('/:id', function (request, response) {
 		const id = request.params.id
-		let { type } = request.body;
-		let sharkUpd = { type };
-		db.collection('sharks').updateOne({ _id: id }, { $set: sharkUpd })
+		const { type } = request.body;
+		db.collection('sharks').updateOne({ _id: id }, { $set: { type } })
 			.then(result => {
-				let { modifiedCount, upsertedCount, upsertedId } = result;
+				const { modifiedCount, upsertedCount, upsertedId } = result;
 				response.json({ modifiedCount, upsertedCount, upsertedId });
 			}).catch(err => {
 				console.error(err);
-				response.status(500).json({ error: 'Unable to update shark in database: ' + err.errmsg });
+				response.status(500).json({ error: 'Unable to update shark in database: ' + err.message });
 			});
 	});
 
@@ -50,7 +46,7 @@ export default function getRouter(db) {
 				response.status(result.deletedCount ? 202 : 404).json({ success: true });
 			}).catch(err => {
 				console.error(err);
-				response.status(500).json({ error: 'Unable to delete shark from database: ' + err.errmsg });
+				response.status(500).json({ error: 'Unable to delete shark from database: ' + err.message });
 			});
 	});
 

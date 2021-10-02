@@ -1,0 +1,42 @@
+# Build all and push to container repository
+name: build-and-push
+on: [push]
+
+env:
+  FRONTEND_IMAGE: ghcr.io/${{ github.repository_owner }}/sharks-frontend
+  BACKEND_IMAGE: ghcr.io/${{ github.repository_owner }}/sharks-backend
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      # - run: docker-compose build
+
+      - name: Set version
+        id: version
+        run: |
+          echo "BRANCH=${{ github.ref }}"
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          # Use Docker `latest` tag convention
+          [ "$VERSION" == "master" ] && VERSION=latest
+          echo VERSION=$VERSION
+          echo ::set-output name=VERSION::$VERSION
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: 🎉 Build and push frontend image
+        run: |
+          docker build ./client/ -t $FRONTEND_IMAGE:${{ steps.version.outputs.VERSION }}
+          docker push $FRONTEND_IMAGE:${{ steps.version.outputs.VERSION }}
+
+      - name: 🎉 Build and push backend image
+        run: |
+          docker build ./server/ -t $BACKEND_IMAGE:${{ steps.version.outputs.VERSION }}
+          docker push $BACKEND_IMAGE:${{ steps.version.outputs.VERSION }}

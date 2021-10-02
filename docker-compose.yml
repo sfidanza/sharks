@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   nginx:
-    image: sfidanza/sharks-frontend
+    image: ghcr.io/sfidanza/sharks-frontend
     ports:
       - "8080:8080"
     depends_on:
@@ -10,7 +10,7 @@ services:
       kompose.service.expose: "true"
     
   app:
-    image: sfidanza/sharks
+    image: ghcr.io/sfidanza/sharks-backend
     environment:
       - MONGO_HOSTNAME=mongo
       - MONGO_PORT=27017

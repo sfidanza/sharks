@@ -1,6 +1,6 @@
-import express from "express";
-import MongoClient from "mongodb";
-import sharks from "./src/sharks.js";
+import express from 'express';
+import { MongoClient } from 'mongodb';
+import sharks from "./sharks.js";
 
 const {
 	MONGO_HOSTNAME,
@@ -13,10 +13,11 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-MongoClient.connect(`mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}`, { useUnifiedTopology: true })
-	.then(client => {
+new MongoClient(`mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}`)
+	.connect()
+	.then(dbClient => {
 		console.log("Connected to mongodb!");
-		const db = client.db('test');
+		const db = dbClient.db('test');
 
 		app.use('/api/sharks', sharks(db));
 

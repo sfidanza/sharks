@@ -52,12 +52,12 @@ You still access the application the same way once the containers are up. Additi
 
 The node.js container also exposes port 9229 and the process in dev mode is started with debug activated (using the `package.json` debug script). Launching the Chrome DevTools external debugger (`chrome://inspect` in the Chrome address bar), you should see the server code in the Sources tab and you will be able to set breakpoints. If you don't, make sure you have `localhost:9229` listed in the Connection tab.
 
-## Publish to dockerhub
+## CI pipeline
 
-I have setup a dockerhub repository for each image to be built and configured them to pull from github at each new commit to the `publish` branch:
+The github workflow is triggered when pushing commits on github: it automatically builds and publishes images to github container repository.
 
-- [sfidanza/sharks](https://hub.docker.com/repository/docker/sfidanza/sharks)
-- [sfidanza/sharks-frontend](https://hub.docker.com/repository/docker/sfidanza/sharks-frontend)
+- [sfidanza/sharks-backend](https://github.com/sfidanza/sharks/pkgs/container/sharks-backend)
+- [sfidanza/sharks-frontend](https://github.com/sfidanza/sharks/pkgs/container/sharks-frontend)
 
 ## Running on Openshift
 

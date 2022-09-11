@@ -8,7 +8,7 @@
     "mongodb": "4.x"
   },
   "devDependencies": {
-    "nodemon": "2.x"
+    "nodemon": "2.0.19"
   },
   "scripts": {
     "start": "node --experimental-json-modules src/index.js",

@@ -21,7 +21,7 @@ services:
       - mongo
 
   mongo:
-    image: mongo:4.4.19-focal
+    image: mongo:4.4.20-focal
     volumes:
       - mongodb:/data/db
     expose:

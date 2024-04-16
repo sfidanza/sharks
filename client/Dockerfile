@@ -1,4 +1,4 @@
-FROM bitnami/nginx:1.25.4
+FROM bitnami/nginx:1.25.5
 
 #RUN rm /etc/nginx/conf.d/default.conf
 COPY sites-available/sharks.conf /opt/bitnami/nginx/conf/server_blocks/

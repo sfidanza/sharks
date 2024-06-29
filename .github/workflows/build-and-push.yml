@@ -13,7 +13,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      # - run: docker-compose build
+      # - run: docker compose build
 
       - name: Set version
         id: version
